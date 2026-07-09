@@ -86,26 +86,9 @@ orbita-market-autotests/
         └── Scenarios71Test.java
 ```
 
-## Публикация репозитория
-
-```bash
-cd orbita-market-autotests
-git init
-git add .
-git commit -m "Add OrbitaMarket API autotests with Allure"
-git remote add origin <your-github-url>
-git push -u origin main
-```
-
-> По ТЗ автотесты **не должны** лежать внутри репозитория микросервисов — этот проект отдельный.
-
 ## Связь с основным проектом
 
 | Репозиторий | Назначение |
 |-------------|------------|
 | `orbita-market` | микросервисы, docker-compose |
 | `orbita-market-autotests` | API-тесты + Allure |
-
----
-
-*Учебный проект, ВШЭ/диплом — OrbitaMarket.*
