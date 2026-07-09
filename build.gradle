@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.12.0'
+}
+
+group = 'org.mainshop'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.11.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'io.rest-assured:rest-assured:5.5.0'
+    testImplementation 'io.rest-assured:json-path:5.5.0'
+    testImplementation 'org.hamcrest:hamcrest:3.0'
+    testImplementation 'io.qameta.allure:allure-junit5:2.29.0'
+    testImplementation 'io.qameta.allure:allure-rest-assured:2.29.0'
+    testImplementation 'org.awaitility:awaitility:4.2.2'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+    systemProperty 'orbita.base.url', System.getProperty('orbita.base.url', 'http://localhost:8080')
+    systemProperty 'junit.jupiter.execution.parallel.enabled', 'false'
+}
+
+allure {
+    version = '2.29.0'
+    adapter {
+        autoconfigure = true
+        aspectjVersion = '1.9.22.1'
+        frameworks {
+            junit5 {
+                adapterVersion = '2.29.0'
+            }
+        }
+    }
+}
